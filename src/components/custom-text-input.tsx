@@ -13,11 +13,11 @@ type CustomTextInputProps = {
   containerStyle?: StyleProp<ViewStyle>;
 } & ComponentProps<typeof TextInput>;
 
-const CustomTextInput = ({
+export default function CustomTextInput({
   label,
   containerStyle,
   ...textInputProps
-}: CustomTextInputProps) => {
+}: CustomTextInputProps) {
   const error = undefined;
   return (
     <View style={containerStyle}>
@@ -37,9 +37,7 @@ const CustomTextInput = ({
       )}
     </View>
   );
-};
-
-export default CustomTextInput;
+}
 
 const styles = StyleSheet.create({
   input: {

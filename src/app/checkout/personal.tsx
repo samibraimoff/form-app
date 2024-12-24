@@ -2,11 +2,9 @@ import { View, StyleSheet } from "react-native";
 import CustomButton from "../../components/custom-button";
 import CustomTextInput from "../../components/custom-text-input";
 import { router } from "expo-router";
-import { useState } from "react";
 import KeyboardAwareScrollView from "../../components/keyboard-aware-scroll-view";
 
-const PersonalDetailsForm = () => {
-  const [fullName, setFullName] = useState("");
+export default function PersonalDetailsForm() {
   const onNext = () => {
     router.push("/checkout/payment");
   };
@@ -35,9 +33,7 @@ const PersonalDetailsForm = () => {
       <CustomButton onPress={onNext} title={"Next"} style={styles.button} />
     </KeyboardAwareScrollView>
   );
-};
-
-export default PersonalDetailsForm;
+}
 
 const styles = StyleSheet.create({
   container: {

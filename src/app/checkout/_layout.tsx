@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 
-const CheckoutLayout = () => {
+export default function CheckoutLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name={"personal"} options={{ title: "Personal" }} />
@@ -8,6 +8,4 @@ const CheckoutLayout = () => {
       <Stack.Screen name={"confirm"} options={{ title: "Confirm" }} />
     </Stack>
   );
-};
-
-export default CheckoutLayout;
+}

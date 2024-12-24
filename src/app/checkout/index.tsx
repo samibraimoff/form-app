@@ -1,7 +1,5 @@
 import { Redirect } from "expo-router";
 
-const InitCheckoutForm = () => {
+export default function InitCheckoutForm() {
   return <Redirect href={"/checkout/personal"} />;
-};
-
-export default InitCheckoutForm;
+}

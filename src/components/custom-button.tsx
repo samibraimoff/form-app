@@ -1,5 +1,6 @@
 import { Pressable, Text, StyleSheet, View } from "react-native";
 import { ComponentProps, ReactNode } from "react";
+import { forwardRef } from "react";
 
 export interface CustomButtonProps extends ComponentProps<typeof Pressable> {
   title: string;
@@ -7,20 +8,17 @@ export interface CustomButtonProps extends ComponentProps<typeof Pressable> {
   rightIcon?: ReactNode;
 }
 
-const CustomButton = ({
-  title,
-  leftIcon,
-  rightIcon,
-  ...pressableProps
-}: CustomButtonProps) => {
-  return (
-    <Pressable {...pressableProps} style={styles.buttonContainer}>
-      {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
-      <Text style={styles.title}>{title}</Text>
-      {rightIcon && <View style={styles.rightIcon}>{rightIcon}</View>}
-    </Pressable>
-  );
-};
+const CustomButton = forwardRef<View, CustomButtonProps>(
+  ({ title, leftIcon, rightIcon, ...pressableProps }, ref) => {
+    return (
+      <Pressable {...pressableProps} style={styles.buttonContainer} ref={ref}>
+        {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
+        <Text style={styles.title}>{title}</Text>
+        {rightIcon && <View style={styles.rightIcon}>{rightIcon}</View>}
+      </Pressable>
+    );
+  },
+);
 
 export default CustomButton;
 

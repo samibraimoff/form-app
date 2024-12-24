@@ -13,6 +13,7 @@ export default function PersonalDetailsForm() {
     <KeyboardAwareScrollView>
       <CustomTextInput label={"Full name"} placeholder={"John Doe"} />
       <CustomTextInput label={"Address"} placeholder={"Address"} />
+
       <View style={{ flexDirection: "row", gap: 5 }}>
         <CustomTextInput
           label={"City"}

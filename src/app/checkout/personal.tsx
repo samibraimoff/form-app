@@ -3,35 +3,56 @@ import CustomButton from "../../components/custom-button";
 import CustomTextInput from "../../components/custom-text-input";
 import { router } from "expo-router";
 import KeyboardAwareScrollView from "../../components/keyboard-aware-scroll-view";
+import { useForm, FormProvider } from "react-hook-form";
 
 export default function PersonalDetailsForm() {
-  const onNext = () => {
+  const methods = useForm();
+
+  const onNext = (data: any) => {
+    console.log(data);
     router.push("/checkout/payment");
   };
 
   return (
     <KeyboardAwareScrollView>
-      <CustomTextInput label={"Full name"} placeholder={"John Doe"} />
-      <CustomTextInput label={"Address"} placeholder={"Address"} />
+      <FormProvider {...methods}>
+        <CustomTextInput
+          name="fullName"
+          label={"Full name"}
+          placeholder={"John Doe"}
+        />
+        <CustomTextInput
+          name="address"
+          label={"Address"}
+          placeholder={"Address"}
+        />
 
-      <View style={{ flexDirection: "row", gap: 5 }}>
+        <View style={{ flexDirection: "row", gap: 5 }}>
+          <CustomTextInput
+            name="city"
+            label={"City"}
+            placeholder={"ex: London"}
+            containerStyle={{ flex: 1 }}
+          />
+          <CustomTextInput
+            name="postalCode"
+            label={"Post Code"}
+            placeholder={"12345"}
+            containerStyle={{ flex: 1 }}
+          />
+        </View>
         <CustomTextInput
-          label={"City"}
-          placeholder={"ex: London"}
-          containerStyle={{ flex: 1 }}
+          name="phoneNumber"
+          label={"Phone number"}
+          placeholder={"(123) 456-7890"}
+          inputMode={"tel"}
         />
-        <CustomTextInput
-          label={"Post Code"}
-          placeholder={"12345"}
-          containerStyle={{ flex: 1 }}
+        <CustomButton
+          onPress={methods.handleSubmit(onNext)}
+          title={"Next"}
+          style={styles.button}
         />
-      </View>
-      <CustomTextInput
-        label={"Phone number"}
-        placeholder={"(123) 456-7890"}
-        inputMode={"tel"}
-      />
-      <CustomButton onPress={onNext} title={"Next"} style={styles.button} />
+      </FormProvider>
     </KeyboardAwareScrollView>
   );
 }

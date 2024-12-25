@@ -2,23 +2,10 @@ import { View, Text, StyleSheet } from "react-native";
 import CustomButton from "../../components/custom-button";
 import { Link, router } from "expo-router";
 import KeyboardAwareScrollView from "../../components/keyboard-aware-scroll-view";
-
-const personalInfo = {
-  fullName: "Vadim Savin",
-  address: "Poblenou",
-  city: "Barcelona",
-  postcode: "1234",
-  phone: "60123123123",
-  country: "ES",
-};
-
-const paymentInfo = {
-  cardNumber: "1234123412341234",
-  expires: "01/30",
-  cvv: "123",
-};
+import { useCheckoutForm } from "../../context/checkout-form/checkout-form-provider";
 
 export default function Confirm() {
+  const { paymentInfo, personalInfo, onSubmit } = useCheckoutForm();
   const onNext = () => {
     // validate
     // submit
@@ -67,7 +54,7 @@ export default function Confirm() {
           </View>
         )}
       </View>
-      <CustomButton onPress={onNext} title={"Submit"} style={styles.button} />
+      <CustomButton onPress={onSubmit} title={"Submit"} style={styles.button} />
     </KeyboardAwareScrollView>
   );
 }

@@ -5,26 +5,20 @@ import { router } from "expo-router";
 import KeyboardAwareScrollView from "../../components/keyboard-aware-scroll-view";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-
-const PaymentInfoSchema = z.object({
-  cardNumber: z.string({ message: "Card number is required." }).min(1),
-  expiry: z
-    .string()
-    .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, {
-      message: "Date must be in MM/YY format",
-    })
-    .min(1),
-  cvv: z.coerce.number().min(100).max(999),
-});
-
-type PaymentInfo = z.infer<typeof PaymentInfoSchema>;
+import {
+  PaymentInfo,
+  PaymentInfoSchema,
+  useCheckoutForm,
+} from "../../context/checkout-form/checkout-form-provider";
 
 export default function PaymentDetailsForm() {
+  const { paymentInfo, setPaymentInfo } = useCheckoutForm();
   const methods = useForm<PaymentInfo>({
     resolver: zodResolver(PaymentInfoSchema),
+    defaultValues: paymentInfo,
   });
   const onNext: SubmitHandler<PaymentInfo> = (data) => {
+    setPaymentInfo(data);
     router.push("/checkout/confirm");
   };
 

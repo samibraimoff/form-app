@@ -10,6 +10,7 @@ import {
   PaymentInfoSchema,
   useCheckoutForm,
 } from "../../context/checkout-form/checkout-form-provider";
+import CustomCheckbox from "../../components/custom-checkbox";
 
 export default function PaymentDetailsForm() {
   const { paymentInfo, setPaymentInfo } = useCheckoutForm();
@@ -45,6 +46,7 @@ export default function PaymentDetailsForm() {
             inputMode="numeric"
           />
         </View>
+        <CustomCheckbox label="Save Card" name="saveCard" />
         <CustomButton
           onPress={methods.handleSubmit(onNext)}
           title={"Next"}

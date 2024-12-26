@@ -24,6 +24,7 @@ export const PaymentInfoSchema = z.object({
     })
     .min(1),
   cvv: z.coerce.number().min(100).max(999),
+  saveCard: z.boolean(),
 });
 
 export type PaymentInfo = z.infer<typeof PaymentInfoSchema>;

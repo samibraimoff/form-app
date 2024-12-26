@@ -12,6 +12,7 @@ import {
 } from "../../context/checkout-form/checkout-form-provider";
 import CustomPickerSelect from "../../components/custom-picker-select";
 import countries from "../../../assets/countries.json";
+import CustomDateTimePicker from "../../components/custom-date-time-picker";
 
 export default function PersonalDetailsForm() {
   const { personalInfo, setPersonalInfo } = useCheckoutForm();
@@ -69,6 +70,7 @@ export default function PersonalDetailsForm() {
           placeholder={"(123) 456-7890"}
           inputMode={"tel"}
         />
+        <CustomDateTimePicker name="datetime" />
         <CustomButton
           onPress={methods.handleSubmit(onNext)}
           title={"Next"}
